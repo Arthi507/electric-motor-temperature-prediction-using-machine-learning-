@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Electric Motor Temperature Prediction</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: linear-gradient(to right, #1D2671, #C33764);
+            color: white;
+            text-align: center;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        input {
+            display: block;
+            margin: 10px auto;
+            padding: 10px;
+            width: 250px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: black;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Electric Motor Temperature Prediction</h1>
+
+        <form id="predictionForm">
+
+            <input type="text" name="u_q" placeholder="u_q" required>
+            <input type="text" name="coolant" placeholder="coolant" required>
+            <input type="text" name="stator_winding" placeholder="stator_winding" required>
+            <input type="text" name="u_d" placeholder="u_d" required>
+            <input type="text" name="stator_tooth" placeholder="stator_tooth" required>
+            <input type="text" name="motor_speed" placeholder="motor_speed" required>
+            <input type="text" name="i_d" placeholder="i_d" required>
+            <input type="text" name="i_q" placeholder="i_q" required>
+            <input type="text" name="stator_yoke" placeholder="stator_yoke" required>
+            <input type="text" name="ambient" placeholder="ambient" required>
+            <input type="text" name="torque" placeholder="torque" required>
+            <input type="text" name="profile_id" placeholder="profile_id" required>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        <h2 id="result"></h2>
+    </div>
+
+<script>
+document.getElementById("predictionForm").addEventListener("submit", function(e) {
+
+    e.preventDefault(); // stop page refresh
+
+    const inputs = document.querySelectorAll("input");
+
+    for (let input of inputs) {
+
+        if (isNaN(input.value)) {
+            alert("❌ Enter numeric values only");
+            return;
+        }
+
+        if (input.value.trim() === "") {
+            alert("❌ Empty fields not allowed");
+            return;
+        }
+    }
+
+    document.getElementById("result").innerText =
+        "✅ Inputs look valid (Frontend Check)";
+});
+</script>
+
+</body>
+</html>
